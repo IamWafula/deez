@@ -1,0 +1,134 @@
+.info h1 {
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-weight: 10000;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #292929;
+    /*background: #34495e; */
+}
+
+.info {
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background: #ffffff;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.sites {
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+    top: 50%;
+    left: 50%;
+    background: #ffffff;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sites form {
+    border-radius: 10px;
+    width: fit-content;
+    background-color: #727272;
+    margin: 2%;
+    margin-bottom: 2%;
+    width: 20%;
+}
+
+.sites form:hover {
+    background: #56b1e6b9;
+    /*width: 500px; */
+}
+
+.sites input[type=submit],
+#addpg {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.header {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20%;
+}
+
+#pageform p #title {
+    border: 0;
+    background: none;
+    text-align: center;
+    border: 2px solid #3498db;
+    outline: none;
+    /*color: rgb(0, 0, 0);*/
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+#pageform p #desc {
+    border: 0;
+    background: none;
+    text-align: center;
+    border: 2px solid #3498db;
+    outline: none;
+    color: rgb(0, 0, 0);
+    border-radius: 24px;
+    transition: 0.25s;
+    margin-top: 15px;
+    padding-top: 30px;
+}
+
+.sites #pageform {
+    border-radius: 10px;
+    width: fit-content;
+    background-color: #727272;
+    margin: 2%;
+    margin-bottom: 2%;
+    width: 20%;
+    color: black;
+}
+
+#removebutton {
+    height: fit-content;
+    margin-left: 4px;
+    border: 0;
+    background: none;
+    text-align: center;
+    outline: none;
+    color: rgb(0, 0, 0);
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    margin-left: 80%;
+    margin-top: 5px;
+}

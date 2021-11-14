@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mainpage.css') }}">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://kit.fontawesome.com/39fcf779bc.js" crossorigin="anonymous"></script>
+
+
+
+<head>
+    <title>
+        Main Page
+    </title>
+
+</head>
+
+<body>
+    <div class="body">
+        <div class="header">
+            Deez Nuts
+        </div>
+
+        <div class="info">
+            <h1> Sites </h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit iusto velit quibusdam eius, itaque distinctio soluta, commodi harum ex voluptatem, ipsam accusamus. Soluta earum iure aliquam laboriosam debitis quam fugiat?
+            </p>
+        </div>
+
+        <div class="sites">
+            {% for page in pages %}
+            <form action="page" method="post">
+                <button type="button" value="{{page['pagename']}}" id="removebutton">
+                    <i class="fas fa-minus-circle"></i>
+                </button>
+                <p>
+                    {{page['pagename']}}
+                    <hr> {{page['description']}}
+                </p>
+
+                <input type="hidden" value="{{page['pagename']}}" name="pgname" id="pagetitle">
+
+                <input type="submit" value="Open Shortener">
+            </form>
+            {% endfor %}
+
+            <form action="addpage" id="pageform" method="post">
+                <p>
+                    <input type="text" id="title" placeholder="Title" name="title">
+                    <input type="hidden" value={{username}} name="username">
+                </p>
+
+                <button type="submit" id="addpg" value="Add page">Add Page</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <form action="logout">
+            <button type="submit" id="logout" value="Logout">Logout</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#removebutton', function() {
+
+                var name = $(this).siblings('#pagetitle').val();
+                $.post("/removepage", {
+                    pagename: name
+                }).done(function(data) {
+                    $(this).parent().remove();
+                });
+                $(this).parent().remove();
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+.info h1 {
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-weight: 10000;
+}
+
+.info p {
+    height: 80px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #292929;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    /*background: #34495e; */
+}
+
+.left {
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-right: 2%;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-left: 2%;
+}
+
+.info {
+    background: #ffffff;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.links {
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 10%;
+    top: 50%;
+    left: 50%;
+    background: #ffffff;
+    text-align: center;
+    border-radius: 10px;
+    width: 70%;
+}
+
+.links .link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*links p:hover {
+    background: #16c1d8cb;
+*/
+
+.links .link div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.links .link div p {
+    color: rgb(50, 165, 231);
+    text-align: justify;
+}
+
+.links .link div .doa2,
+.links .link div .doa {
+    color: rgb(0, 0, 0);
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.button button {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.header {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+    margin-top: 29%;
+}
+
+.doa {
+    background-color: rgba(255, 0, 0, 0.712);
+    width: fit-content;
+    border-radius: 24px;
+    margin-left: 2px;
+}
+
+.doa2 {
+    background-color: rgba(2, 196, 2, 0.815);
+    width: fit-content;
+    border-radius: 24px;
+    margin-left: 2px;
+}
+
+input[type="text"] {
+    border-radius: 20px;
+    border-color: #3498db;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.links .addbtn button {
+    border: 0;
+    background: none;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    outline: none;
+    color: rgb(0, 0, 0);
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+#button {
+    height: fit-content;
+    margin-left: 4px;
+    border: 0;
+    background: none;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    outline: none;
+    color: rgb(0, 0, 0);
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
