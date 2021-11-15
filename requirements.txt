@@ -36,6 +36,7 @@ pycryptodome==3.4.3
 pyparsing==2.4.7
 Pyrebase==3.0.17
 python-jwt==2.0.1
+PyJWT==1.7.1
 requests==2.18.1
 requests-toolbelt==0.7.0
 rsa==4.7.2
