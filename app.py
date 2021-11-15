@@ -1,6 +1,6 @@
 
 # Bs from flask
-from typing import Text
+#from typing import Text
 from flask import Flask, render_template , request , session, jsonify
 from flask.helpers import url_for
 from werkzeug.utils import redirect
@@ -18,6 +18,9 @@ from redcheck import check
 #for random link
 import random
 import string
+
+#import bitly depedencies
+import bitlyshortener
 
 
 app = Flask(__name__, template_folder='static')
@@ -214,6 +217,23 @@ def set_dead(link, route):
       'alive': False
    })
 
+def bitlyy(url):
+   docs = db.collection('bitly').stream()
+
+   short = []
+
+   for i in docs: 
+      dic = i.to_dict()
+      short.append(dic['token'])
+
+   shortener = bitlyshortener.Shortener(tokens=short, max_cache_size=256)
+
+   urls = [url]
+
+   short = shortener.shorten_urls(urls)
+
+   return short[0]
+
 @app.route('/')
 def start():
    if  session.get('logged_in',None):
@@ -402,20 +422,25 @@ def shortened(route):
    return redirect(link)
 
 
-@app.route('/shorten', methods=['post','get'])
-def shorten():
+@app.route('/bitly', methods=['post','get'])
+def bitly():
    name = request.form['pagename']
 
    url = 'short/'
 
-   shorturl = url + id_generator()
+   digits = id_generator()
+   shorturl = url + digits
+   
 
    while check_avail(shorturl):  
-      shorturl = url + id_generator()
+      digits = id_generator()
+      shorturl = url + digits
 
    update_url(name, shorturl)
 
-   return shorturl
+   link = bitlyy("https://deezshorts.herokuapp.com/"+shorturl)
+
+   return link
 
 if __name__ == '__main__':
    app.run()
