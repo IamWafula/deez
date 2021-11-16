@@ -2,6 +2,7 @@
     color: rgb(0, 0, 0);
     text-transform: uppercase;
     font-weight: 10000;
+    color: white;
 }
 
 .info p {
@@ -12,7 +13,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-image: url('/static/images/back.jpg')
+    /*background-image: url('/static/images/back.jpg')*/
 }
 
 .body {
@@ -34,7 +35,7 @@ body {
 }
 
 .info {
-    background: #ffffff;
+    background: #262626;
     text-align: center;
     border-radius: 10px;
 }
@@ -45,7 +46,7 @@ body {
     margin-right: 10%;
     top: 50%;
     left: 50%;
-    background: #ffffff;
+    background: #262626;
     text-align: center;
     border-radius: 10px;
     width: 70%;
@@ -55,6 +56,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #262626;
+    border-radius: 2px 2px 0px 0px;
 }
 
 
@@ -96,13 +99,14 @@ body {
 }
 
 .header {
-    background-color: #F1F1F1;
+    background: #262626;
     text-align: center;
     padding: 20px;
+    color: white;
 }
 
 .footer {
-    background-color: #F1F1F1;
+    background: #262626;
     text-align: center;
     padding: 20px;
     margin-top: 29%;
@@ -135,7 +139,7 @@ input[type="text"] {
     text-align: center;
     border: 2px solid #2ecc71;
     outline: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer;
@@ -153,4 +157,13 @@ input[type="text"] {
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.fa-minus-circle:before {
+    content: "\f056";
+    color: #ff000085;
 }

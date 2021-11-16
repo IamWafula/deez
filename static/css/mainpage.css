@@ -1,5 +1,5 @@
 .info h1 {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     text-transform: uppercase;
     font-weight: 10000;
 }
@@ -13,14 +13,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-image: url('/static/images/back.jpg')
+    /*background-image: url('/static/images/back.jpg')*/
 }
 
 .info {
     margin-top: 1%;
     margin-left: 10%;
     margin-right: 10%;
-    background: #ffffff;
+    background: #262626;
     text-align: center;
     border-radius: 10px;
 }
@@ -31,7 +31,7 @@ body {
     margin-right: 10%;
     top: 50%;
     left: 50%;
-    background: #ffffff;
+    background: #262626;
     text-align: center;
     border-radius: 10px;
     display: flex;
@@ -71,13 +71,14 @@ body {
 }
 
 .header {
-    background-color: #F1F1F1;
+    background: #262626;
     text-align: center;
     padding: 20px;
+    color: white;
 }
 
 .footer {
-    background-color: #F1F1F1;
+    background: #262626;
     text-align: center;
     padding: 20px;
     margin-top: 20%;
