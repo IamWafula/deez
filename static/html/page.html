@@ -2,7 +2,7 @@
 <html>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/page.css') }}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://kit.fontawesome.com/39fcf779bc.js" crossorigin="anonymous"></script>
 
 <head>
@@ -13,28 +13,28 @@
 </head>
 
 <body style="background-image: url({{ url_for('static', filename='images/back.jpg') }})">
-    <div class=" header ">
+    <div class="header">
         Xshortener
     </div>
-    <div class="body ">
-        <div class="left ">
-            <div class="info ">
+    <div class="body">
+        <div class="left">
+            <div class="info">
                 <h1> {{name}} </h1>
                 <hr>
-                <a id="shortened " href="{{url}} ">Open url</a>
-                <p id="linktext "></p>
+                <a id="shortened" href="{{url}}">Open url</a>
+                <p id="linktext"></p>
             </div>
 
 
-            <div class="button " id="bitly ">
+            <div class="button" id="bitly">
                 <button>Bitlyshortener</button>
             </div>
 
         </div>
 
-        <div class="links ">
+        <div class="links">
 
-            <div class="link " id="list ">
+            <div class="link" id="list">
 
                 {% for link in many_links %} {% if link['alive'] == false %}
                 <div>
@@ -42,11 +42,11 @@
                         {{link['url']}}
                     </p>
 
-                    <input type="hidden " value="{{link[ 'url']}} " id="pageurl ">
+                    <input type="hidden" value="{{link['url']}}" id="pageurl">
 
-                    <p class="doa ">dead</p>
-                    <button class="buttoni " id="button " value="{{link[ 'url']}} ">
-                        <i class="fas fa-minus-circle "></i>
+                    <p class="doa">dead</p>
+                    <button class="buttoni" id="button" value="{{link['url']}}">
+                        <i class="fas fa-minus-circle"></i>
                     </button>
                 </div>
                 {%endif%} {%endfor%} {% for link in many_links %} {% if link['alive'] == true %}
@@ -55,20 +55,20 @@
                         {{link['url']}}
                     </p>
 
-                    <input type="hidden " value="{{link[ 'url']}} " id="pageurl ">
+                    <input type="hidden" value="{{link['url']}}" id="pageurl">
 
-                    <p class="doa2 ">alive</p>
-                    <button id="button " value="{{link[ 'url']}} ">
-                        <i class="fas fa-minus-circle "></i>
+                    <p class="doa2">alive</p>
+                    <button id="button" value="{{link['url']}}">
+                        <i class="fas fa-minus-circle"></i>
                     </button>
                 </div>
 
                 {%endif%} {%endfor%}
             </div>
 
-            <div class="addbtn ">
-                <input type="text " id="ulr ">
-                <button type="submit " id="add ">add</button>
+            <div class="addbtn">
+                <input type="text" id="ulr">
+                <button type="submit" id="add">add</button>
             </div>
 
         </div>
@@ -78,31 +78,31 @@
 
 
 
-    <div class="footer ">
-        <form action="logout ">
-            <button type="submit " id="logout " value="Logout ">Logout</button>
+    <div class="footer">
+        <form action="logout">
+            <button type="submit" id="logout" value="Logout">Logout</button>
         </form>
     </div>
 
     <script>
         $(document).ready(function() {
             // Get value on button click and show alert
-            $("#add ").click(function() {
-                var str = $("#ulr ").val();
-                var div = document.createElement("div ");
-                var par = document.createElement("p ");
-                var aod = document.createElement("p ");
+            $("#add").click(function() {
+                var str = $("#ulr").val();
+                var div = document.createElement("div");
+                var par = document.createElement("p");
+                var aod = document.createElement("p");
 
 
 
-                $.post("/servo_pos ", {
+                $.post("/servo_pos", {
                     name: str,
                     pagename: '{{name}}'
                 }).done(function(data) {
-                    if (data == "True ") {
+                    if (data == "True") {
                         //data = str.concat(data)
                         aod.setAttribute('class', 'doa2')
-                        aod.append("Alive ")
+                        aod.append("Alive")
 
 
                         par.append(str);
@@ -111,19 +111,19 @@
                         div.append(aod);
 
 
-                        $("#list ").append(div);
+                        $("#list").append(div);
                     } else {
                         //data = str.concat(data)
                         aod.setAttribute('class', 'doa')
-                        aod.append("Dead ")
+                        aod.append("Dead")
 
                         par.append(str);
 
                         div.append(par);
                         div.append(aod);
 
-                        $("#list ").append(div);
-                        //$( "p " ).last().addClass( "selected " );
+                        $("#list").append(div);
+                        //$( "p" ).last().addClass( "selected" );
                     }
 
 
@@ -141,11 +141,11 @@
                 var url = $(this).val()
                 console.log(url);
 
-                $.post("/remove_link ", {
+                $.post("/remove_link", {
                     adress: url
                 }).done(function(data) {
                     $(this).parent().remove()
-                        //console.log("done ")
+                        //console.log("done")
                 });
                 //});
                 $(this).parent().remove()
@@ -153,14 +153,14 @@
             });
 
             $(document).on('click', '#bitly', function() {
-                $.post("/bitly ", {
+                $.post("/bitly", {
                     pagename: '{{name}}'
                 }).done(function(data) {
                     //$('#shortened').text(data);
-                    $("#shortened ").attr("href ", data)
+                    $("#shortened").attr("href", data)
 
-                    var link = $("#shortened ").attr("href ")
-                    $("#linktext ").text(link)
+                    var link = $("#shortened").attr("href")
+                    $("#linktext").text(link)
                 });
             });
 
