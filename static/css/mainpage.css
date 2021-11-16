@@ -13,8 +13,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: #292929;
-    /*background: #34495e; */
+    background-image: url('/static/images/back.jpg')
 }
 
 .info {
