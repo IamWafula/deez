@@ -161,9 +161,14 @@ input[type="text"] {
 
 a {
     text-decoration: none;
+    color: #2b9de7;
 }
 
 .fa-minus-circle:before {
     content: "\f056";
     color: #ff000085;
+}
+
+#linktext {
+    color: #6cc36cb8;
 }
