@@ -14,51 +14,51 @@
 
 </head>
 
-<body>
-    <div class="body">
-        <div class="header">
+<body style="background-image: url({{ url_for('static', filename='images/back.jpg') }})">
+    <div class=" body ">
+        <div class="header ">
             Main Page
         </div>
 
-        <div class="info">
+        <div class="info ">
             <h1> Sites </h1>
             <p>
                 X Shortener
             </p>
         </div>
 
-        <div class="sites">
+        <div class="sites ">
             {% for page in pages %}
-            <form action="page" method="post">
-                <button type="button" value="{{page['pagename']}}" id="removebutton">
-                    <i class="fas fa-minus-circle"></i>
+            <form action="page " method="post ">
+                <button type="button " value="{{page[ 'pagename']}} " id="removebutton ">
+                    <i class="fas fa-minus-circle "></i>
                 </button>
                 <p>
                     {{page['pagename']}}
                     <hr> {{page['description']}}
                 </p>
 
-                <input type="hidden" value="{{page['pagename']}}" name="pgname" id="pagetitle">
+                <input type="hidden " value="{{page[ 'pagename']}} " name="pgname " id="pagetitle ">
 
-                <input type="submit" value="Open Shortener">
+                <input type="submit " value="Open Shortener ">
             </form>
             {% endfor %}
 
-            <form action="addpage" id="pageform" method="post">
+            <form action="addpage " id="pageform " method="post ">
                 <p>
-                    <input type="text" id="title" placeholder="Title" name="title">
-                    <input type="hidden" value={{username}} name="username">
+                    <input type="text " id="title " placeholder="Title " name="title ">
+                    <input type="hidden " value={{username}} name="username ">
                 </p>
 
-                <button type="submit" id="addpg" value="Add page">Add Page</button>
+                <button type="submit " id="addpg " value="Add page ">Add Page</button>
             </form>
 
         </div>
     </div>
 
-    <div class="footer">
-        <form action="logout">
-            <button type="submit" id="logout" value="Logout">Logout</button>
+    <div class="footer ">
+        <form action="logout ">
+            <button type="submit " id="logout " value="Logout ">Logout</button>
         </form>
     </div>
 
@@ -67,7 +67,7 @@
             $(document).on('click', '#removebutton', function() {
 
                 var name = $(this).siblings('#pagetitle').val();
-                $.post("/removepage", {
+                $.post("/removepage ", {
                     pagename: name
                 }).done(function(data) {
                     $(this).parent().remove();
