@@ -416,7 +416,7 @@ def shortened(route):
    
    link = get_link()
    while check(link) == False:
-      get_link()
+      link = get_link()
       set_dead(link,route)
 
    return redirect(link)
