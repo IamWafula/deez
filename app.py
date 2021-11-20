@@ -487,6 +487,8 @@ def shortened(route):
 
    bot = antibot()
 
+   print(bot['is_bot'])
+
    if bot['is_bot'] == True:
       return redirect("https://youtu.be/dQw4w9WgXcQ")
    elif bot['is_bot'] == False:
