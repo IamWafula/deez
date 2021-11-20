@@ -259,20 +259,11 @@ def bitlyy(url):
    return short[0]
 
 
-def antibot():
-   
-
-   ipurl = "https://antibot.pw/api/ip.php?"
+def antibot(ip):
 
    payload={}
    files={}
    headers = {}
-
-   response_ip = requests.request("GET", ipurl, headers=headers, data=payload, files=files)
-
-   response_ip = response_ip.json()
-
-   ip = response_ip["query"]
 
    url = "https://antibot.pw/api/v2-blockers?ip="+ip+"&apikey=bb0be71d497cd248ec194f6621a4a614&ua=test"
 
@@ -461,6 +452,12 @@ def remove_link():
 
 @app.route('/short/<route>')
 def shortened(route):
+   from flask import request   
+   if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+      ip = request.environ['REMOTE_ADDR']
+   else:
+      ip = request.environ['HTTP_X_FORWARDED_FOR']
+
    if session.get('currentpage',None) == "none":
       route = get_page_name('short/'+route)
       session['currentpage'] = route
@@ -483,16 +480,20 @@ def shortened(route):
       link = get_link()
       set_dead(link,route)
 
-   bot = antibot()
+   bot = antibot(ip)
 
    session['bot'] = bot
 
-   #print(session.get('bot', None))
+   print(ip)
 
-   if session.get('bot', None) == True:
-      return redirect("https://youtu.be/dQw4w9WgXcQ")
-   elif session.get('bot', None) == False:
-      return redirect(link)
+   #print(session.get('bot', None))
+   try:
+      if session.get('bot', None) == True:
+         return redirect("https://youtu.be/dQw4w9WgXcQ")
+      elif session.get('bot', None) == False:
+         return redirect(link)
+   except:
+      return session.get('bot', None) 
 
 
 @app.route('/bitly', methods=['post','get'])
