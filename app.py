@@ -285,7 +285,9 @@ def antibot():
    #print("Response is")
    #return response.text
 
-   return response['is_bot']
+   
+
+   return response
 
 def get_short(name):
    doc = db.collection('pages').where('pagename','==',name).get()
@@ -485,9 +487,9 @@ def shortened(route):
 
    bot = antibot()
 
-   if bot:
+   if bot['is_bot'] == True:
       return redirect("https://youtu.be/dQw4w9WgXcQ")
-   else:
+   elif bot['is_bot'] == False:
       return redirect(link)
 
 
