@@ -144,6 +144,8 @@ def get_url(pagename):
 
    return short'''
 
+
+
 #get working urls for the shortened site
 def get_working_urls(name):
    doc = db.collection('links').where('pagename','==',name).get()
@@ -161,24 +163,32 @@ def get_working_urls(name):
 #update url to database for main page, if already exists do nothing
 def update_url(name, url):
    doc = db.collection('pages').where('pagename','==',name).get()
+   
+   doc = doc[0]
+   id = doc.id
+
+   data = db.collection('pages').document(id)
+
+   data.update({
+      'description': url
+   })
+
+
+#CHECK IF short already exists
+def check_short(name):
+   doc = db.collection('pages').where('pagename','==',name).get()
 
    linkss = []
 
    for i in doc:
       linkss.append(i.to_dict())
-   
+
    page = linkss[0] 
+
    if 'short' in page['description']:
-      pass
+      return False
    else:
-      doc = doc[0]
-      id = doc.id
-
-      data = db.collection('pages').document(id)
-
-      data.update({
-         'description': url
-      })
+      return True
 
    
 
@@ -276,6 +286,18 @@ def antibot():
    #return response.text
 
    return response['is_bot']
+
+def get_short(name):
+   doc = db.collection('pages').where('pagename','==',name).get()
+
+   linkss = []
+
+   for i in doc:
+      linkss.append(i.to_dict())
+
+   page = linkss[0] 
+
+   return page['description']
 
 @app.route('/')
 def start():
@@ -473,19 +495,23 @@ def shortened(route):
 def bitly():
    name = request.form['pagename']
 
-   url = 'short/'
+   if check_short(name):
+      url = 'short/'
 
-   digits = id_generator()
-   shorturl = url + digits
-   
-
-   while check_avail(shorturl):  
       digits = id_generator()
       shorturl = url + digits
+      
 
-   update_url(name, shorturl)
+      while check_avail(shorturl):  
+         digits = id_generator()
+         shorturl = url + digits
+         update_url(name, shorturl)
+      
+      link = bitlyy("https://deezshorts.herokuapp.com/"+shorturl)
+   else:
+      short = get_short(name)
+      link = bitlyy("https://deezshorts.herokuapp.com/"+short)
 
-   link = bitlyy("https://deezshorts.herokuapp.com/"+shorturl)
 
    return link
 
