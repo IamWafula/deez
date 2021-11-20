@@ -461,7 +461,7 @@ def shortened(route):
       link = get_link()
       set_dead(link,route)
 
-   #bot = antibot()
+   bot = antibot()
 
    if bot:
       return redirect("https://youtu.be/dQw4w9WgXcQ")
