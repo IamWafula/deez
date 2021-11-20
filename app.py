@@ -22,6 +22,9 @@ import string
 #import bitly depedencies
 import bitlyshortener
 
+#import requests 
+import requests
+
 
 app = Flask(__name__, template_folder='static')
 app.secret_key = "super secret key"
@@ -155,18 +158,29 @@ def get_working_urls(name):
 
    return urls
 
-#update url to database for main page
+#update url to database for main page, if already exists do nothing
 def update_url(name, url):
    doc = db.collection('pages').where('pagename','==',name).get()
 
-   doc = doc[0]
-   id = doc.id
+   linkss = []
 
-   data = db.collection('pages').document(id)
+   for i in doc:
+      linkss.append(i.to_dict())
+   
+   page = linkss[0] 
+   if 'short' in page['description']:
+      pass
+   else:
+      doc = doc[0]
+      id = doc.id
 
-   data.update({
-      'description': url
-   })
+      data = db.collection('pages').document(id)
+
+      data.update({
+         'description': url
+      })
+
+   
 
 #check if the shortened url is available elsewhere
 def check_avail(link):
@@ -233,6 +247,35 @@ def bitlyy(url):
    short = shortener.shorten_urls(urls)
 
    return short[0]
+
+
+def antibot():
+   
+
+   ipurl = "https://antibot.pw/api/ip.php?"
+
+   payload={}
+   files={}
+   headers = {}
+
+   response_ip = requests.request("GET", ipurl, headers=headers, data=payload, files=files)
+
+   response_ip = response_ip.json()
+
+   ip = response_ip["query"]
+
+   url = "https://antibot.pw/api/v2-blockers?ip="+ip+"&apikey=bb0be71d497cd248ec194f6621a4a614&ua=test"
+
+
+   response = requests.request("GET", url, headers=headers, data=payload, files=files)
+
+   response = response.json()
+
+
+   #print("Response is")
+   #return response.text
+
+   return response['is_bot']
 
 @app.route('/')
 def start():
@@ -403,7 +446,6 @@ def shortened(route):
       route = session.get('currentpage',None)
    links = get_working_urls(route)
 
-   #print(links)
    def get_link():
       rand = random.choice(links)
 
@@ -419,7 +461,12 @@ def shortened(route):
       link = get_link()
       set_dead(link,route)
 
-   return redirect(link)
+   bot = antibot()
+
+   if bot:
+      return redirect("https://youtu.be/dQw4w9WgXcQ")
+   else:
+      return redirect(link)
 
 
 @app.route('/bitly', methods=['post','get'])
@@ -443,4 +490,5 @@ def bitly():
    return link
 
 if __name__ == '__main__':
+   app.debug = True
    app.run()
