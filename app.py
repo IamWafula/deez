@@ -512,10 +512,10 @@ def bitly():
          shorturl = url + digits
          update_url(name, shorturl)
       
-      link = bitlyy("https://deezshorts.herokuapp.com/"+shorturl)
+      link = bitlyy("https://xxshort.herokuapp.com/"+shorturl)
    else:
       short = get_short(name)
-      link = bitlyy("https://deezshorts.herokuapp.com/"+short)
+      link = bitlyy("https://xxshort.herokuapp.com/"+short)
 
 
    return link
