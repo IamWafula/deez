@@ -23,7 +23,7 @@
         <div class="info">
             <h1> Sites </h1>
             <p>
-                X Shortener
+                A list of all your Pages
             </p>
         </div>
 
@@ -46,7 +46,8 @@
 
             <form action="addpage" id="pageform" method="post">
                 <p>
-                    <input type="text" id="title" placeholder="Title" name="title">
+                    Title
+                    <input type="text" id="title" name="title" required>
                     <input type="hidden" value={{username}} name="username">
                 </p>
 
@@ -64,6 +65,7 @@
 
     <script>
         $(document).ready(function() {
+
             $(document).on('click', '#removebutton', function() {
 
                 var name = $(this).siblings('#pagetitle').val();
